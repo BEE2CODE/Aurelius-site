@@ -23,21 +23,21 @@ const Productdetails = () => {
       image: "/images/bag4.png",
       text: "Herschel Heritage Backpack | XL",
       rating: 4.5,
-      price: "$200",
+      price: "$100",
     },
     {
       id: 2,
       image: "/images/bag5.png",
       text: "Herschel Heritage Backpack | XL",
       rating: 4.5,
-      price: "$200",
+      price: "$850",
     },
     {
       id: 3,
       image: "/images/bag6.png",
       text: "Herschel Heritage Backpack | XL",
       rating: 4.5,
-      price: "$200",
+      price: "$370",
     },
   ];
 
