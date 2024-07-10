@@ -15,8 +15,7 @@ const Products = () => {
         { id: 9, image: '/images/bag9.png', text: 'Cosmoa Backpack | Travel - 30L', rating: 4.5, price: '$38' },
       ];
 
-  return (
-    <div className=" py-8 ">
+  return (    <div className=" py-8 ">
       <div className="grid lg:grid-cols-3 grid-cols-2">
         {shoppingItems.map((item,index )=> (
           <Shoppingcard
