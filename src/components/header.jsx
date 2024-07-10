@@ -58,15 +58,14 @@ const Header = () => {
             <Cart isOpen={isNestedCartOpen} setIsNestedCartOpen={setIsNestedCartOpen} />
           )}
         </div>
-        <div className="container">
-          <div className="flex items-center lg:hidden gap-4">
-            <Link to="/search" className="text-black hover:text-gray-300">
-          <img src="../images/search-normal.svg" alt="img" />
-            </Link>
-            <Link to="/account" className="text-black hover:text-gray-300">
-            <img src="../images/profile.svg" alt="" />
-            </Link>
-        </div>
+        <div className="flex items-center lg:hidden gap-4">
+          <Link to="/search" className="text-black hover:text-gray-300">
+        <img src="../images/search-normal.svg" alt="img" />
+          </Link>
+          <Link to="/account" className="text-black hover:text-gray-300">
+           <img src="../images/profile.svg" alt="" />
+          </Link>
+
           <button onClick={toggleAddCartDropdown} className="text-2xl flex gap-2 items-center">
            <span className="hidden">Cart</span><img src="../images/shopping-bag.svg" alt="img" /><span className="text-4xl">0</span>
           </button>
