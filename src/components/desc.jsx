@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosArrowForward } from "react-icons/io";
 
-const Desc = () => {
+const desc = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -30,4 +30,4 @@ const Desc = () => {
   );
 };
 
-export default Desc;
+export default desc;

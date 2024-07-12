@@ -1,11 +1,11 @@
-
-
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import Addcart from "./addcart";
 import Cart from "./cart";
+
 import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+
 
 const Header = () => {
   const links = [
@@ -26,10 +26,11 @@ const Header = () => {
   };
 
   return (
-    <div className="h-32 border-b border-customMarsland cursor-pointer">
-      <p className="flex items-center justify-center h-11 bg-customJana text-base font-normal text-[16px] p-[30px]">
+    <div className="cursor-pointer">
+      <p className="flex items-center justify-center h-11 bg-customJana text-base font-normal p-[30px] text-[16px] ">
         20% off when you sign up to email
       </p>
+      <div className="flex items-center justify-center h-32 border-b border-customMarsland ">
       <nav className="flex items-center justify-between bg-customPurity p-6 text-base font-normal container w-[100%] max-w-[90%] mx-auto md:px-5">
         <div>
           <Link to="/">
@@ -79,6 +80,8 @@ const Header = () => {
           <div><img src="../images/menu.svg" alt="img" /></div>
         </div>
       </nav>
+      </div>
+
     </div>
   );
 };

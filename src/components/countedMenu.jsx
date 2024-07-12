@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Counted = () => {
+const CountedMenu = () => {
   const [count, setCount] = useState(0);
 
   const increment = () => setCount(count + 1);
@@ -25,4 +25,4 @@ const Counted = () => {
   );
 };
 
-export default Counted;
+export default CountedMenu;

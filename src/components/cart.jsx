@@ -3,7 +3,7 @@ import { CgCloseR } from "react-icons/cg";
 import { LuMinus } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import Counted from "./counted";
+import Counted from "./countedMenu";
 
    const Cart = ({setIsNestedCartOpen}) => {
     const navigate = useNavigate();
