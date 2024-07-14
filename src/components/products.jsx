@@ -1,35 +1,80 @@
-import React from 'react';
-import Shoppingcard from './shoppingcard';
+import React, { useContext, useEffect, useState } from "react";
+import Shoppingcard from "./shoppingcard";
+import { useQuery } from "@tanstack/react-query";
+import { useApp } from "../context/AppContext";
+import Counter from "./counter";
+import { APIKEY, APIURLPRODUCTS, APPID, ORGID } from "../ApiKeys";
+import { fetchProducts } from "../helpers";
+
+
 
 
 const Products = () => {
-    const shoppingItems = [
-        { id: 1, image:'/images/bag1.png', text: 'Herschel Heritage Backpack | XL', rating: 4.5, price: '$120' },
-        { id: 2, image: '/images/bag2.png', text: 'Little American Backpack | Premium  Classics - 30l', rating: 4.5, price: '$895' },
-        { id: 3, image: '/images/bag3.png', text: 'Retreat™ Backpack 23L', rating: 4.5, price: '$220' },
-        { id: 4, image:'/images/bag4.png', text: 'Kasio Backpack | Tech-30L', rating: 4.5, price: '$9200' },
-        { id: 5, image: '/images/bag5.png', text: 'Kasio Backpack | Sch - 30L', rating: 4.5, price: '$165' },
-        { id: 6, image: '/images/bag6.png', text: 'Little America Backpack | Sch - 30L', rating: 4.5, price: '$60' },
-        { id: 7, image:'/images/bag7.png', text: 'Little America Backpack | Classics - 30L', rating: 4.5, price: '$96' },
-        { id: 8, image: '/images/bag8.png', text: 'Kasio Backpack |  Sch -XL', rating: 4.5, price: '$18' },
-        { id: 9, image: '/images/bag9.png', text: 'Cosmoa Backpack | Travel - 30L', rating: 4.5, price: '$38' },
-      ];
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+  const [allProducts, setAllProducts] = useState([]);
+  const {total, setTotal}  = useApp()
+  const [count, setcount]    = useState(10)
 
-  return (    <div className=" py-8 ">
+
+  const { data:products, isLoading, isError } = useQuery({
+    queryKey: ["products",APIURLPRODUCTS, ORGID, APPID, APIKEY, page, size],
+    queryFn: fetchProducts,
+    keepPreviousData: true,
+  });
+
+  useEffect(() => {
+    if (products) {
+      setAllProducts((prevProducts) => [...prevProducts, ...products.items]);
+    
+    }
+    if (products){
+      setTotal(products.total)
+    }
+  }, [products]);
+
+  const handleViewMore = (details) => {
+    if (details){
+      navigate("/")
+      return
+    }
+    setPage((prevPage) => prevPage + 1);
+    setcount(count + products.items.length)
+  };
+
+  if (isLoading) return <div>Loading....</div>;
+  if (isError) return <div>Error loading products</div>;
+
+
+ 
+
+  if (isLoading) return <div>Loading....</div>;
+
+ 
+
+  return (
+    <>
+    <div className=" py-8 ">
       <div className="grid lg:grid-cols-3 grid-cols-2">
-        {shoppingItems.map((item,index )=> (
-          <Shoppingcard
-            key={item.id}
-            length={shoppingItems.length-1}
-            index ={index}
-            image={item.image}
-            text={item.text}
-            rating={item.rating}
-            price={item.price}
-          />
-        ))}
+        {allProducts && allProducts.map ((item, index) =>   {
+          return (
+  
+      <Shoppingcard
+        key={item.id}
+        id={item.id}
+        image={item.photos[0].url}
+        text={item.name}
+        rating={item.rating}
+        price={item.current_price[0].LRD ? item.current_price[0]?.LRD[0]: 200}
+        />
+)})}
+      
       </div>
     </div>
+    <div className=" flex items-center justify-center ">
+    <Counter handleViewMore = {handleViewMore} count = {count} total= {total} />
+  </div>
+    </>
   );
 };
 
